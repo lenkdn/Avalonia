@@ -10,12 +10,22 @@
              mc:Ignorable="d">
 
     <Design.DataContext>
-        <vm:MainWindowViewModel />
+        <vm:MainViewModel />
     </Design.DataContext>
 
-    <TextBlock HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               FontSize="32"
-               Text="Hello, Avalonia!" />
-
+    <StackPanel HorizontalAlignment="Center"
+                Spacing="16">
+        <ComboBox Margin="16"
+                  HorizontalAlignment="Center"
+                  SelectedIndex="{Binding SelectedIndex}">
+            <ComboBox.Items>
+                <TextBlock Text="View 1" />
+                <TextBlock Text="View 2" />
+            </ComboBox.Items>
+        </ComboBox>
+        <Border BorderBrush="Black"
+                BorderThickness="1">
+            <ContentControl Content="{Binding CurrentViewModel}" />
+        </Border>
+    </StackPanel>
 </UserControl>

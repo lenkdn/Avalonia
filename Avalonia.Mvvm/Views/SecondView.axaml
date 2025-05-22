@@ -1,0 +1,28 @@
+<UserControl x:Class="Avalonia.Mvvm.Views.SecondView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Avalonia.Mvvm.ViewModels"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             x:DataType="vm:SecondViewModel"
+             mc:Ignorable="d">
+
+    <Design.DataContext>
+        <vm:SecondViewModel />
+    </Design.DataContext>
+
+    <DataGrid HorizontalAlignment="Center"
+              GridLinesVisibility="All"
+              IsReadOnly="True"
+              ItemsSource="{Binding Items}"
+              SelectedItem="{Binding SelectedItem}">
+        <DataGrid.Columns>
+            <DataGridTextColumn Binding="{Binding Name}"
+                                Header="Name" />
+            <DataGridTextColumn Binding="{Binding Count}"
+                                Header="Count" />
+        </DataGrid.Columns>
+    </DataGrid>
+</UserControl>

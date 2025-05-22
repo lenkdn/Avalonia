@@ -1,7 +1,9 @@
 using System.Linq;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
+using Avalonia.Mvvm.Locators;
 using Avalonia.Mvvm.ViewModels;
 using Avalonia.Mvvm.Windows;
 
@@ -18,14 +20,19 @@ public class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
-            // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
             DisableAvaloniaDataAnnotationValidation();
+
             desktop.MainWindow = new MainWindow
             {
                 DataContext = new MainWindowViewModel()
             };
         }
+
+        DataTemplates.Add(new CachingViewLocator(data =>
+        {
+            var typeName = data.GetType().FullName ?? "null";
+            return new TextBlock {Text = "No view found for " + typeName};
+        }));
 
         base.OnFrameworkInitializationCompleted();
     }
