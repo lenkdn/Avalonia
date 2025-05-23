@@ -1,6 +1,6 @@
 namespace Avalonia.Mvvm.Models;
 
-public class Item
+public record Item
 {
     public string Name { get; set; } = string.Empty;
     public int Count { get; set; }

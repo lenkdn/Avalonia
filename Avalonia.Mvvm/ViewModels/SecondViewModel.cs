@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Avalonia.Mvvm.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -21,6 +22,15 @@ public partial class SecondViewModel : ViewModelBase
             Name = "Second item 2",
             Count = 22
         });
+    }
+    
+    public SecondViewModel(
+        Item? selectedItem,
+        ICollection<Item> items)
+    {
+        SelectedItem = selectedItem;
+        Items.Clear();
+        foreach (var item in items) Items.Add(item);
     }
 
     public ObservableCollection<Item> Items { get; set; } = [];

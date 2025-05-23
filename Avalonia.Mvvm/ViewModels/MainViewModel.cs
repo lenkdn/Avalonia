@@ -14,6 +14,17 @@ public partial class MainViewModel : ViewModelBase
         CurrentViewModel = FirstViewModel;
     }
 
+    public MainViewModel(
+        FirstViewModel firstViewModel,
+        SecondViewModel secondViewModel,
+        int selectedIndex)
+    {
+        FirstViewModel = firstViewModel;
+        SecondViewModel = secondViewModel;
+        SelectedIndex = selectedIndex;
+        OnSelectedIndexChanged(SelectedIndex);
+    }
+
     public FirstViewModel FirstViewModel { get; }
     public SecondViewModel SecondViewModel { get; }
 
